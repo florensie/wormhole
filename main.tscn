@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cr8n2or72i0nb"]
+
+[ext_resource type="PackedScene" uid="uid://pl53ypflv87x" path="res://scenes/box_grid/box_grid.tscn" id="1_iamsh"]
+[ext_resource type="PackedScene" uid="uid://dk3hdwc4lhit7" path="res://scenes/box/box.tscn" id="2_vr3oq"]
+[ext_resource type="Script" path="res://scenes/camera/camera.gd" id="3_0po2q"]
+
+[node name="Main" type="Node3D"]
+
+[node name="BoxGrid" parent="." instance=ExtResource("1_iamsh")]
+size = 6
+box_scene = ExtResource("2_vr3oq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99962, -0.0275727, 0, 0.0275727, 0.99962, 0, 0, 0)
+script = ExtResource("3_0po2q")
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)

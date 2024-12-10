@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://pl53ypflv87x"]
+
+[ext_resource type="Script" path="res://scenes/box_grid/box_grid.gd" id="1_sijbg"]
+
+[node name="BoxGrid" type="Node3D"]
+script = ExtResource("1_sijbg")
