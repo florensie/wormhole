@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://46k61o417j3r"]
+
+[ext_resource type="Shader" uid="uid://hq6oynlrgbr7" path="res://Space.tres" id="1_wxskv"]
+[ext_resource type="Texture2D" uid="uid://babcusgilmoyl" path="res://Space.png" id="2_ffadu"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_wxskv")
+shader_parameter/Texture2DParameter = ExtResource("2_ffadu")
