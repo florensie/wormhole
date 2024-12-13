@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr8n2or72i0nb"]
+[gd_scene load_steps=6 format=3 uid="uid://cr8n2or72i0nb"]
 
 [ext_resource type="PackedScene" uid="uid://pl53ypflv87x" path="res://scenes/box_grid/box_grid.tscn" id="1_iamsh"]
 [ext_resource type="PackedScene" uid="uid://dk3hdwc4lhit7" path="res://scenes/box/box.tscn" id="2_vr3oq"]
 [ext_resource type="Script" path="res://scenes/camera/camera.gd" id="3_0po2q"]
 [ext_resource type="MeshLibrary" uid="uid://binxn7p705sta" path="res://Tiles lib.tres" id="4_ih4hp"]
+[ext_resource type="PackedScene" uid="uid://d24822f17ct8n" path="res://astroid tiles.tscn" id="4_yqaci"]
 
 [node name="Main" type="Node3D"]
 
@@ -20,6 +21,9 @@ script = ExtResource("3_0po2q")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+
+[node name="Astroids" parent="CameraPivot" instance=ExtResource("4_yqaci")]
+transform = Transform3D(1, 0, 0, 0, 0.99962, 0.0275727, 0, -0.0275727, 0.99962, -1.46381, -2.78337, 17.3256)
 
 [node name="GridMap" type="GridMap" parent="."]
 transform = Transform3D(0.99571, 0, 0, 0, 0.99571, 0, 0, 0, 0.99571, 0, 0, 0)
