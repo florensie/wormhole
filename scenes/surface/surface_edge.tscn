@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=4 uid="uid://bwyn4ofhcec2e"]
+
+[ext_resource type="Script" path="res://scripts/grid_item.gd" id="1_3xurx"]
+[ext_resource type="Material" path="res://Space mat instance.tres" id="2_xhah5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u56ut"]
+resource_name = "Material.005"
+cull_mode = 2
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_juxrf"]
+_surfaces = [{
+"aabb": AABB(-0.5, -0.5, -0.5, 1, 1, 1),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("CAAHAAAACAAJAAcACQAGAAcACQAKAAYACgAFAAYACgALAAUACwAEAAUACwAMAAQADAADAAQADAANAAMADQACAAMADQABAAIA"),
+"name": "Material.005",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 14,
+"vertex_data": PackedByteArray("AAAAAP//AAD/////AAAAAP//AAAAAAAARfcAAEFCAACy3QAA/38AAAS1AAAEtQAA/38AALLdAABBQgAARfcAAAAA/////wAAQUL//0X3AAD/f///st0AAAS1//8EtQAAst3///9/AABF9///QUIAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fceag"]
+resource_name = "Tiles_Cube_002"
+_surfaces = [{
+"aabb": AABB(-0.5, -0.5, -0.5, 1, 1, 1),
+"attribute_data": PackedByteArray("/3/+/////3/+////qer//1TV/v//v/7/qar+/1SV/v//f/9/VJX/f6qq/3//v/9/VNX/f6nq/38="),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("CAAHAAAACAAJAAcACQAGAAcACQAKAAYACgAFAAYACgALAAUACwAEAAUACwAMAAQADAADAAQADAANAAMADQACAAMADQABAAIA"),
+"material": SubResource("StandardMaterial3D_u56ut"),
+"name": "Material.005",
+"primitive": 3,
+"uv_scale": Vector4(2, 2, 0, 0),
+"vertex_count": 14,
+"vertex_data": PackedByteArray("AAAAAP//EoD/////AAD4v///AAAAAPi/RfcAAEFCVLWy3QAA/3+pqgS1AAAEtf+f/38AALLdVJVBQgAARfeqigAA/////xKAQUL//0X3qor/f///st1UlQS1//8Etf+fst3///9/qapF9///QUJUte7DDjz2fxAAD4AJAP9/AAD/fwAA/38AAP9/AAD/fwAA70PtQ/9/AAD/fwAA/38AAP9/AAD/fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_juxrf")
+
+[node name="SurfaceEdge" type="Node3D"]
+script = ExtResource("1_3xurx")
+
+[node name="Surface Edge" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_fceag")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_xhah5")

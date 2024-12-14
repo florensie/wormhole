@@ -1,21 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxmby7bgt8mqo"]
+[gd_scene load_steps=3 format=3 uid="uid://d1n5qf6gplgis"]
 
 [ext_resource type="PackedScene" uid="uid://bhqdiw7dvs2y8" path="res://Tiles.glb" id="1_h8dbj"]
-[ext_resource type="Material" uid="uid://46k61o417j3r" path="res://Space mat instance.tres" id="2_st0f6"]
+[ext_resource type="Material" path="res://Space mat instance.tres" id="2_st0f6"]
 
 [node name="Tiles" instance=ExtResource("1_h8dbj")]
 
 [node name="Surface Corner" parent="." index="0"]
+visible = false
 surface_material_override/0 = ExtResource("2_st0f6")
 
 [node name="Surface Edge" parent="." index="1"]
+visible = false
 surface_material_override/0 = ExtResource("2_st0f6")
 
 [node name="Surface Flat" parent="." index="2"]
+visible = false
 surface_material_override/0 = ExtResource("2_st0f6")
 
 [node name="Wormhole Opening" parent="." index="3"]
+visible = false
 surface_material_override/0 = ExtResource("2_st0f6")
 
 [node name="Wormhole Inside" parent="." index="4"]
+visible = false
 surface_material_override/0 = ExtResource("2_st0f6")
