@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk3hdwc4lhit7"]
+[gd_scene load_steps=6 format=3 uid="uid://dk3hdwc4lhit7"]
 
 [ext_resource type="Script" path="res://scenes/box/box.gd" id="1_ixucv"]
 [ext_resource type="PackedScene" uid="uid://b4w5w1nncu4js" path="res://scenes/wormhole_inside/wormhole_inside.tscn" id="2_0k25y"]
+[ext_resource type="Material" uid="uid://46k61o417j3r" path="res://Space mat instance.tres" id="3_m3i70"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_bjgms"]
 
@@ -14,6 +15,7 @@ wormhole_inside_scene = ExtResource("2_0k25y")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 mesh = SubResource("BoxMesh_bjgms")
+surface_material_override/0 = ExtResource("3_m3i70")
 
 [node name="Area3D" type="Area3D" parent="."]
 

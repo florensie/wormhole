@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://pl53ypflv87x"]
+[gd_scene load_steps=10 format=4 uid="uid://pl53ypflv87x"]
 
 [ext_resource type="Script" path="res://scenes/grid_world/grid_world.gd" id="1_sijbg"]
 [ext_resource type="PackedScene" uid="uid://dk3hdwc4lhit7" path="res://scenes/box/box.tscn" id="2_d1y73"]
-[ext_resource type="Material" path="res://Space mat instance.tres" id="2_hr5ee"]
 [ext_resource type="PackedScene" uid="uid://bwyn4ofhcec2e" path="res://scenes/surface/surface_edge.tscn" id="3_30gxl"]
 [ext_resource type="PackedScene" uid="uid://dm63fbobyvthp" path="res://scenes/surface/surface_corner.tscn" id="4_pb0xf"]
+[ext_resource type="Shader" uid="uid://hq6oynlrgbr7" path="res://Space.tres" id="5_m8bn1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u56ut"]
 resource_name = "Material.005"
@@ -46,6 +46,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_kf80x")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pblbl"]
+render_priority = 0
+shader = ExtResource("5_m8bn1")
+
 [node name="GridWorld" type="Node3D"]
 script = ExtResource("1_sijbg")
 box_scene = ExtResource("2_d1y73")
@@ -56,4 +60,4 @@ corner_scene = ExtResource("4_pb0xf")
 visible = false
 mesh = SubResource("ArrayMesh_8b3k6")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_hr5ee")
+surface_material_override/0 = SubResource("ShaderMaterial_pblbl")

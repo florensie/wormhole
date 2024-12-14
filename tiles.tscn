@@ -1,21 +1,25 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxmby7bgt8mqo"]
 
 [ext_resource type="PackedScene" uid="uid://bhqdiw7dvs2y8" path="res://3D Assets/Tiles.glb" id="1_h8dbj"]
-[ext_resource type="Material" uid="uid://46k61o417j3r" path="res://Space mat instance.tres" id="2_st0f6"]
+[ext_resource type="Material" uid="uid://46k61o417j3r" path="res://Space mat instance.tres" id="2_y8xhd"]
 
 [node name="Tiles" instance=ExtResource("1_h8dbj")]
 
 [node name="Surface Corner" parent="." index="0"]
-surface_material_override/0 = ExtResource("2_st0f6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.04388, 0, 1.32168)
+surface_material_override/0 = ExtResource("2_y8xhd")
 
 [node name="Surface Edge" parent="." index="1"]
-surface_material_override/0 = ExtResource("2_st0f6")
+transform = Transform3D(1.0008, 0, 0, 0, 1.0008, 0, 0, 0, 1.0008, 0.499008, 0.949833, -1.87283)
+surface_material_override/0 = ExtResource("2_y8xhd")
 
 [node name="Surface Flat" parent="." index="2"]
-surface_material_override/0 = ExtResource("2_st0f6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.51314, -0.0097723, -1.17954)
+surface_material_override/0 = ExtResource("2_y8xhd")
 
 [node name="Wormhole Opening" parent="." index="3"]
-surface_material_override/0 = ExtResource("2_st0f6")
+surface_material_override/0 = ExtResource("2_y8xhd")
 
 [node name="Wormhole Inside" parent="." index="4"]
-surface_material_override/0 = ExtResource("2_st0f6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41641, 0, 0)
+surface_material_override/0 = ExtResource("2_y8xhd")

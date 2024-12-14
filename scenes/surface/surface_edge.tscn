@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://bwyn4ofhcec2e"]
 
 [ext_resource type="Script" path="res://scripts/grid_item.gd" id="1_3xurx"]
-[ext_resource type="Material" path="res://Space mat instance.tres" id="2_xhah5"]
+[ext_resource type="Material" uid="uid://46k61o417j3r" path="res://Space mat instance.tres" id="2_xhah5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u56ut"]
 resource_name = "Material.005"
