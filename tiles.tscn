@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxmby7bgt8mqo"]
 
-[ext_resource type="PackedScene" uid="uid://bhqdiw7dvs2y8" path="res://Tiles.glb" id="1_h8dbj"]
+[ext_resource type="PackedScene" uid="uid://bhqdiw7dvs2y8" path="res://3D Assets/Tiles.glb" id="1_h8dbj"]
 [ext_resource type="Material" uid="uid://46k61o417j3r" path="res://Space mat instance.tres" id="2_st0f6"]
 
 [node name="Tiles" instance=ExtResource("1_h8dbj")]

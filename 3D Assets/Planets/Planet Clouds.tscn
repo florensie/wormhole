@@ -1,0 +1,131 @@
+[gd_scene load_steps=8 format=3 uid="uid://b13epjtd1wjgw"]
+
+[ext_resource type="PackedScene" uid="uid://rdb01ida7yea" path="res://3D Assets/Planets/Planets.fbx" id="1_vj7ok"]
+[ext_resource type="Material" uid="uid://gp7e8712tfbo" path="res://3D Assets/Planets/Clouds instance.tres" id="2_njes7"]
+[ext_resource type="Shader" uid="uid://cv5kmuce0ryx0" path="res://3D Assets/Planets/Planet Surface.tres" id="3_5u2ts"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o1shr"]
+render_priority = 0
+shader = ExtResource("3_5u2ts")
+shader_parameter/ColorParameter = Color(0, 0.784314, 0.254902, 1)
+shader_parameter/ColorParameter2 = Color(0, 0.447059, 1, 1)
+shader_parameter/ColorParameter3 = Color(0.41, 0.567333, 1, 1)
+
+[sub_resource type="Animation" id="Animation_xaqy7"]
+resource_name = "Clouds Rotate"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube_003:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(-1.5708, 18.8496, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube_005:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(-1.5708, 12.5664, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cube_006:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(-1.5708, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6osra"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube_003:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube_005:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 12.5664, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cube_006:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qgr4t"]
+_data = {
+"Clouds Rotate": SubResource("Animation_xaqy7"),
+"RESET": SubResource("Animation_6osra")
+}
+
+[node name="Planets" instance=ExtResource("1_vj7ok")]
+
+[node name="Cube_001" parent="." index="0"]
+visible = false
+
+[node name="Cube_002" parent="." index="1"]
+visible = false
+
+[node name="Cube_003" parent="." index="2"]
+transform = Transform3D(100, -0.000446638, -1.61683e-09, 0, -0.000361999, 100, -0.000446638, -100, -0.000361999, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_njes7")
+
+[node name="Cube_004" parent="." index="3"]
+visible = false
+
+[node name="Cube_005" parent="." index="4"]
+transform = Transform3D(100, -0.00289599, -1.04835e-08, 0, -0.000361999, 100, -0.00289599, -100, -0.000361999, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_njes7")
+
+[node name="Cube_006" parent="." index="5"]
+transform = Transform3D(100, -0.000446638, -1.61683e-09, 0, -0.000361999, 100, -0.000446638, -100, -0.000361999, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_o1shr")
+
+[node name="Cube_007" parent="." index="6"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0.933487)
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
+libraries = {
+"": SubResource("AnimationLibrary_qgr4t")
+}
+autoplay = "Clouds Rotate"

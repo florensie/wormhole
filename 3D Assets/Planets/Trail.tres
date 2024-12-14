@@ -1,0 +1,60 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://djf5v0f3wgow7"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_uw8bd"]
+parameter_name = "ColorParameter"
+
+[sub_resource type="VisualShaderNodeFresnel" id="VisualShaderNodeFresnel_pt5mx"]
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_hiavn"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_thsrl"]
+parameter_name = "ColorParameter2"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_add, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform vec4 ColorParameter : source_color;
+uniform vec4 ColorParameter2 : source_color;
+
+
+
+void fragment() {
+// ColorParameter:2
+	vec4 n_out2p0 = ColorParameter;
+
+
+// ColorParameter:5
+	vec4 n_out5p0 = ColorParameter2;
+
+
+// Fresnel:3
+	float n_in3p3 = 1.00000;
+	float n_out3p0 = pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_in3p3);
+
+
+// Mix:4
+	vec3 n_out4p0 = mix(vec3(n_out2p0.xyz), vec3(n_out5p0.xyz), vec3(n_out3p0));
+
+
+// Output:0
+	ALBEDO = n_out4p0;
+
+
+}
+"
+graph_offset = Vector2(-461.896, 43.0606)
+modes/blend = 1
+flags/unshaded = true
+nodes/fragment/0/position = Vector2(800, 100)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_uw8bd")
+nodes/fragment/2/position = Vector2(-420, 160)
+nodes/fragment/3/node = SubResource("VisualShaderNodeFresnel_pt5mx")
+nodes/fragment/3/position = Vector2(-280, 560)
+nodes/fragment/4/node = SubResource("VisualShaderNodeMix_hiavn")
+nodes/fragment/4/position = Vector2(40, 280)
+nodes/fragment/5/node = SubResource("VisualShaderNodeColorParameter_thsrl")
+nodes/fragment/5/position = Vector2(-740, 340)
+nodes/fragment/connections = PackedInt32Array(2, 0, 4, 0, 3, 0, 4, 2, 5, 0, 4, 1, 4, 0, 0, 0)

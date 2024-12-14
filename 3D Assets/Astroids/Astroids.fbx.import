@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b4lrcjndgpgad"
-path="res://.godot/imported/Astroids.fbx-a6ea0bc97f38b4e8112797406b76c01f.scn"
+uid="uid://dkulaj471for4"
+path="res://.godot/imported/Astroids.fbx-0f4b6680c8752233766dd10901473664.scn"
 
 [deps]
 
-source_file="res://Astroids.fbx"
-dest_files=["res://.godot/imported/Astroids.fbx-a6ea0bc97f38b4e8112797406b76c01f.scn"]
+source_file="res://3D Assets/Astroids/Astroids.fbx"
+dest_files=["res://.godot/imported/Astroids.fbx-0f4b6680c8752233766dd10901473664.scn"]
 
 [params]
 

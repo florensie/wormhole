@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://gp7e8712tfbo"]
+
+[ext_resource type="Shader" uid="uid://u7hdcejltav2" path="res://3D Assets/Planets/Planet Clouds.tres" id="1_qhoyu"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_qhoyu")
