@@ -6,22 +6,22 @@ class_name InnerSpace
 
 
 ## Try to replace self with wormhole, returns true if the wormhole position is valid and was created
-func create_worm_hole(direction: Vector3i, is_initial: bool = false, rotation = null) -> bool:
+func create_worm_hole(direction: Vector3i, is_initial: bool = false, rotato = null) -> bool:
 	var is_valid = true
 	var neighbor: GridItem = grid_world.get_neighbor_grid_item(self, direction)
-	if not rotation:
-		rotation = self.basis
+	if rotato == null:
+		# Wormhole entry
+		rotato = self.basis
 	
 	# Recurse until no more neighbors are found
 	if neighbor:
-		# FIXME: rotation is sometimes wrong in the middle...
-		is_valid = neighbor.create_worm_hole(direction, false, rotation) if neighbor is InnerSpace else false
+		is_valid = neighbor.create_worm_hole(direction, false, rotato) if neighbor is InnerSpace else false
 	else:
 		# Wormhole exit
-		rotation = self.basis
+		rotato = self.basis
 	
 	if is_valid:
 		var wormhole_instance = grid_world.replace_grid_item(self, wormhole_scene)
-		wormhole_instance.transform.basis = rotation
+		wormhole_instance.transform.basis = rotato
 	
 	return is_valid

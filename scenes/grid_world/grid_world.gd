@@ -63,7 +63,6 @@ const faces = {
 		[0, 1, 0, 0, 1],
 	],
 }
-var item_name_format = RegEx.create_from_string("\\((-?\\d+),\\s*(-?\\d+),\\s*(-?\\d+)\\)")
 
 
 func _ready():
@@ -104,7 +103,7 @@ func get_grid_item(pos: Vector3i) -> GridItem:
 func get_neighbor_grid_item(item: GridItem, direction: Vector3i) -> GridItem:
 	assert(Util.is_cardinal_direction(direction), "must be a cardinal direction")
 	
-	var position: Vector3i = _name_to_vec(item.name)
+	var position: Vector3i = item.get_grid_pos()
 	var neighbor_pos = position + direction
 	return get_grid_item(neighbor_pos)
 
@@ -133,7 +132,7 @@ func set_grid_item_at(pos: Vector3i, scene: PackedScene) -> GridItem:
 
 
 func replace_grid_item(item: GridItem, scene: PackedScene) -> GridItem:
-	return set_grid_item_at(_name_to_vec(item.name), scene)
+	return set_grid_item_at(item.get_grid_pos(), scene)
 
 
 ## Remove a grid item by node reference
@@ -147,15 +146,13 @@ func rotation_for_pos(pos: Vector3i) -> Basis:
 	return surface_lookup.rotation_for_normal(normal)
 
 
+func get_surface_normal(item: GridItem):
+	return _get_surface_normal(item.position)
+
+
 func _to_local_position(pos: Vector3i) -> Vector3:
 	var offset: float = float(size-1 * box_size) / 2
 	return Vector3(pos.x - offset, pos.y - offset, pos.z - offset) # TODO: simplify
-
-
-func _name_to_vec(name: String) -> Vector3i:
-	var result: RegExMatch = item_name_format.search(name)
-	assert(result, "regex did not match")
-	return Vector3i(int(result.get_string(1)), int(result.get_string(2)), int(result.get_string(3)))
 
 
 func _count_position_boundaries(pos: Vector3i, size: Vector3i) -> int:

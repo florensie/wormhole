@@ -1,11 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bh5fdmt1tks32"]
+[gd_scene load_steps=3 format=3 uid="uid://b4wmots4b8ate"]
 
-[ext_resource type="Texture2D" uid="uid://dhykkdkpw6jdy" path="res://icon.svg" id="1_t6xu1"]
+[ext_resource type="Script" path="res://scenes/redstone/redstone.gd" id="1_12r75"]
+[ext_resource type="PackedScene" uid="uid://cc7bulnyhpg7l" path="res://3D Assets/Redstone Tiles/Scenes/redstone straight.tscn" id="2_m3lpc"]
 
 [node name="Redstone" type="Node3D"]
+script = ExtResource("1_12r75")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-texture = ExtResource("1_t6xu1")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="Redstone Straight" parent="." instance=ExtResource("2_m3lpc")]

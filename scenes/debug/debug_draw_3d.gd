@@ -31,7 +31,7 @@ func draw_triangle(pos, dir, size, color):
 	self.draw_polygon(points, PackedColorArray([color]))
 
 
-func add_vector(node: Node, property: StringName, scale: float, width: float):
+func add_vector(node: Node, property: StringName, scale: float = 1, width: float = 2):
 	vectors.append(DebugVector.new(node, property, scale, width))
 
 
@@ -41,13 +41,15 @@ class DebugVector:
 	var scale: float
 	var width: float
 
-	func _init(_node: Node, _property: StringName, _scale: float, _width: float):
+	func _init(_node: Node, _property: StringName, _scale: float = 1, _width: float = 2):
 		node = _node
 		property = _property
 		scale = _scale
 		width = _width
 
 	func draw(debug_draw: DebugDraw3D, camera: Camera3D):
+		if not node:
+			return
 		var world_vector: Vector3 = node.get(property)
 		var start_coord: Vector2 = camera.unproject_position(node.global_transform.origin)
 		var end_coord: Vector2 = camera.unproject_position(node.global_transform.origin + world_vector * scale)

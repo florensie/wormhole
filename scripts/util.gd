@@ -27,6 +27,7 @@ static func count_nonzero(vec) -> int:
 	return vec.x + vec.y + vec.z
 
 
+## Returns a color value for a vector, useful for debugging
 static func vector3_to_color(vector: Vector3) -> Color:
 	var normalized_vector = vector.normalized()
 	
@@ -35,3 +36,16 @@ static func vector3_to_color(vector: Vector3) -> Color:
 	var b = (normalized_vector.z + 1.0) * 0.5
 	
 	return Color(r, g, b)
+
+
+## Returns vectors perpendicular to the given normal, in 4 cardinal directions
+static func get_cardinal_vectors(plane_normal: Vector3) -> Array:
+	var tangent1 = Vector3.UP if abs(plane_normal.dot(Vector3.UP)) < 0.99 else Vector3.FORWARD
+	var tangent2 = plane_normal.cross(tangent1).normalized()
+	
+	return [
+		tangent1,
+		-tangent1,
+		tangent2,
+		-tangent2
+	]
