@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://cskfcqme0skyi" path="res://3D Assets/Redstone Tiles/FBX/Redstone Straight.fbx" id="1_hun2f"]
 [ext_resource type="Shader" uid="uid://dfm1ek2bb81iv" path="res://3D Assets/Redstone Tiles/Redstone Shader instance.tres" id="2_6pcnc"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hlb85"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wvlle"]
 render_priority = 0
 shader = ExtResource("2_6pcnc")
 
 [node name="Redstone Straight" instance=ExtResource("1_hun2f")]
 
-[node name="Straight_001" parent="." index="0"]
-surface_material_override/0 = SubResource("ShaderMaterial_hlb85")
+[node name="Straight_002" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_wvlle")

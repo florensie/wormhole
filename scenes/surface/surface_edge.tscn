@@ -45,7 +45,6 @@ shadow_mesh = SubResource("ArrayMesh_juxrf")
 script = ExtResource("1_3xurx")
 
 [node name="Surface Edge" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_fceag")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_xhah5")
