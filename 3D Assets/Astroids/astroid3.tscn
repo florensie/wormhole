@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqn3r2qi1jxrv"]
+
+[ext_resource type="PackedScene" uid="uid://dkulaj471for4" path="res://3D Assets/Astroids/Astroids.fbx" id="1_f2fjo"]
+[ext_resource type="Material" uid="uid://fbpbfodyrwuq" path="res://Astroid Shader instance.tres" id="2_owfuh"]
+
+[node name="Astroids" instance=ExtResource("1_f2fjo")]
+
+[node name="Plane" parent="." index="0"]
+visible = false
+
+[node name="Plane_001" parent="." index="1"]
+visible = false
+surface_material_override/0 = ExtResource("2_owfuh")
+
+[node name="Plane_002" parent="." index="2"]
+surface_material_override/0 = ExtResource("2_owfuh")
