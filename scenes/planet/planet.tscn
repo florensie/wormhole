@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://mcny8y118ao2"]
+
+[ext_resource type="Script" path="res://scenes/planet/planet.gd" id="1_eau15"]
+[ext_resource type="PackedScene" uid="uid://cft8byf14jwdc" path="res://scenes/scene_switcher/scene_switcher.tscn" id="2_dtgpa"]
+[ext_resource type="PackedScene" uid="uid://b13epjtd1wjgw" path="res://3D Assets/Planets/Planet Clouds.tscn" id="2_yc2ka"]
+[ext_resource type="PackedScene" uid="uid://cdj0bywiym7cx" path="res://3D Assets/Planets/planet Orbit.tscn" id="3_i1x7m"]
+[ext_resource type="PackedScene" uid="uid://cml2weu8h4t3i" path="res://3D Assets/Planets/Planet Vortex.tscn" id="4_22lko"]
+
+[node name="Planet" type="Node3D"]
+script = ExtResource("1_eau15")
+
+[node name="SceneSwitcher" parent="." instance=ExtResource("2_dtgpa")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="Planets" parent="SceneSwitcher" instance=ExtResource("2_yc2ka")]
+
+[node name="Planet orbit" parent="SceneSwitcher" instance=ExtResource("3_i1x7m")]
+visible = false
+
+[node name="Planet Vortex" parent="SceneSwitcher" instance=ExtResource("4_22lko")]
+visible = false

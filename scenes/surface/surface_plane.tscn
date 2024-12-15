@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/surface/surface_plane.gd" id="1_keyrq"]
 [ext_resource type="Material" uid="uid://46k61o417j3r" path="res://Space mat instance.tres" id="1_kxumg"]
-[ext_resource type="PackedScene" uid="uid://b4w5w1nncu4js" path="res://scenes/wormhole_inside/wormhole_inside.tscn" id="2_0ahy0"]
+[ext_resource type="PackedScene" uid="uid://xpbxvqbt52fq" path="res://scenes/wormhole/wormhole_opening.tscn" id="3_hiyy4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qdyd"]
 resource_name = "Material.005"
@@ -46,7 +46,7 @@ shadow_mesh = SubResource("ArrayMesh_kiik3")
 
 [node name="SurfacePlane" type="Node3D"]
 script = ExtResource("1_keyrq")
-wormhole_inside_scene = ExtResource("2_0ahy0")
+wormhole_scene = ExtResource("3_hiyy4")
 
 [node name="Surface Flat" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_3kdir")

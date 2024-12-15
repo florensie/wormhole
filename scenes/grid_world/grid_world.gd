@@ -1,66 +1,95 @@
 extends Node
 class_name GridWorld
 
-@export var size: int = 5
+@export var size: int = 7
+@export var inner_scene: PackedScene
 @export var edge_scene: PackedScene
 @export var corner_scene: PackedScene
 @export var plane_scene: PackedScene
+@export var planet_scene: PackedScene
+@export var obstacle_scene: PackedScene
 @export var box_size: int = 1
 
 @onready var surface_lookup: SurfaceLookup = $SurfaceLookup
 
-# 0 = nothing
-# 1 = obstacle
-# 2 = planet
-# TODO: implement
-const faces = [
-	[
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
+## 0 = nothing
+## 1 = obstacle
+## 2 = planet1
+## 3 = planet2
+## 4 = planet3
+## Size of arrays should be size of grid - 2 (for the edges)
+# TODO: unhardcode using resources/json/whatever
+const faces = {
+	Vector3.MODEL_REAR: [
+		[0, 0, 0, 4, 0],
+		[1, 0, 0, 1, 0],
+		[0, 2, 1, 0, 0],
+		[0, 0, 0, 3, 0],
+		[0, 1, 0, 0, 1],
 	],
-	[
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
+	Vector3.MODEL_TOP: [
+		[0, 0, 0, 4, 0],
+		[1, 0, 0, 1, 0],
+		[0, 2, 1, 0, 0],
+		[0, 0, 0, 3, 0],
+		[0, 1, 0, 0, 1],
 	],
-	[
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
+	Vector3.MODEL_FRONT: [
+		[0, 0, 0, 4, 0],
+		[1, 0, 0, 1, 0],
+		[0, 2, 1, 0, 0],
+		[0, 0, 0, 3, 0],
+		[0, 1, 0, 0, 1],
 	],
-	[
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0],
+	Vector3.MODEL_BOTTOM: [
+		[0, 0, 0, 4, 0],
+		[1, 0, 0, 1, 0],
+		[0, 2, 1, 0, 0],
+		[0, 0, 0, 3, 0],
+		[0, 1, 0, 0, 1],
 	],
-]
+	Vector3.MODEL_LEFT: [
+		[0, 0, 0, 4, 0],
+		[1, 0, 0, 1, 0],
+		[0, 2, 1, 0, 0],
+		[0, 0, 0, 3, 0],
+		[0, 1, 0, 0, 1],
+	],
+	Vector3.MODEL_RIGHT: [
+		[0, 0, 0, 4, 0],
+		[1, 0, 0, 1, 0],
+		[0, 2, 1, 0, 0],
+		[0, 0, 0, 3, 0],
+		[0, 1, 0, 0, 1],
+	],
+}
 var item_name_format = RegEx.create_from_string("\\((-?\\d+),\\s*(-?\\d+),\\s*(-?\\d+)\\)")
 
 
 func _ready():
-	# Fill
+	# Build level
 	for pos in Util.vector3i_range(Vector3i.ONE * size):
 		var world_pos: Vector3 = _to_local_position(pos)
 		var normal: Vector3 = _get_surface_normal(world_pos)
 		var boundaries: int = Util.count_nonzero(normal.abs())
-		var scene: PackedScene = plane_scene
+		var scene: PackedScene = inner_scene
 		
-		if boundaries == 2:
-			scene = edge_scene
-		elif boundaries == 3:
-			scene = corner_scene
+		if _is_on_surface(pos):
+			if boundaries == 2:
+				scene = edge_scene
+			elif boundaries == 3:
+				scene = corner_scene
+			else:
+				scene = plane_scene
+				var object_pos = pos + Vector3i(normal)
+				match _get_face_value(normal, pos):
+					1: set_grid_item_at(object_pos, obstacle_scene)
+					var idx when idx in range(2, 5):
+						var planet: Planet = set_grid_item_at(object_pos, planet_scene)
+						planet.type = idx - 2
 		
-		var rotation: Basis = surface_lookup.rotation_for_normal(normal)
-		var grid_item = set_grid_item_at(pos, scene, rotation)
+		var grid_item = set_grid_item_at(pos, scene)
+		# TODO: add debug toggle
 		#if grid_item:
 			#grid_item.normal = normal
 			#if _is_on_surface(pos):
@@ -83,16 +112,19 @@ func get_neighbor_grid_item(item: GridItem, direction: Vector3i) -> GridItem:
 ## Sets a grid item to a given scene
 ## Returns the instantiated scene.
 ## If scene is null, the grid position is cleared, and no node is returned.
-func set_grid_item_at(pos: Vector3i, scene: PackedScene, rotation: Basis = Basis.IDENTITY) -> GridItem:
+func set_grid_item_at(pos: Vector3i, scene: PackedScene) -> GridItem:
 	var existing_item = get_grid_item(pos)
 	if existing_item:
 		remove_child(existing_item)
 	
 	var item_instance: GridItem
 	if scene:
+		var world_pos: Vector3 = _to_local_position(pos)
+		var normal: Vector3 = _get_surface_normal(world_pos)
+		
 		item_instance = scene.instantiate()
-		item_instance.position = _to_local_position(pos)
-		item_instance.transform.basis = rotation
+		item_instance.position = world_pos
+		item_instance.transform.basis = surface_lookup.rotation_for_normal(normal)
 		item_instance.name = str(pos)
 		item_instance.grid_world = self
 		add_child(item_instance)
@@ -107,6 +139,12 @@ func replace_grid_item(item: GridItem, scene: PackedScene) -> GridItem:
 ## Remove a grid item by node reference
 func remove_grid_item(item: GridItem) -> void:
 	remove_child(item)
+
+
+func rotation_for_pos(pos: Vector3i) -> Basis:
+	var world_pos: Vector3 = _to_local_position(pos)
+	var normal: Vector3 = _get_surface_normal(world_pos)
+	return surface_lookup.rotation_for_normal(normal)
 
 
 func _to_local_position(pos: Vector3i) -> Vector3:
@@ -128,56 +166,58 @@ func _count_position_boundaries(pos: Vector3i, size: Vector3i) -> int:
 	return at_boundary.count(true)
 
 
-func _get_surface_normal(pos: Vector3) -> Vector3:
-	var center = Vector3.ZERO  # Center of the cube
-	var vec = pos - center
-	var abs_vec = Vector3(abs(vec.x), abs(vec.y), abs(vec.z))
-	var max_abs = max(abs_vec.x, abs_vec.y, abs_vec.z)
-	var epsilon = 0.001  # Small tolerance for floating point comparisons
-	var normal = Vector3()
+func _get_surface_normal(world_pos: Vector3) -> Vector3:
+	const epsilon: float = 0.001  # Small tolerance for floating point comparisons
+	const center: Vector3 = Vector3.ZERO  # Center of the cube
+	
+	var vec: Vector3 = world_pos - center
+	var abs_vec: Vector3 = vec.abs()
+	var max_abs: float = abs_vec[abs_vec.max_axis_index()]
+	var normal: Vector3 = Vector3()
 
 	# Retain components that are approximately equal to the maximum
+	# TODO: do we need this?
 	if abs(abs_vec.x - max_abs) < epsilon:
 		normal.x = vec.x
-	else:
-		normal.x = 0.0
 	if abs(abs_vec.y - max_abs) < epsilon:
 		normal.y = vec.y
-	else:
-		normal.y = 0.0
 	if abs(abs_vec.z - max_abs) < epsilon:
 		normal.z = vec.z
-	else:
-		normal.z = 0.0
 
 	normal = normal.normalized()
 	return normal
-
-
-func _compute_rotation(normal: Vector3) -> Basis:
-	if normal == Vector3.ZERO:
-		return Basis.IDENTITY
-	else:
-		# Compute rotation that aligns the model's up vector (0, 1, 0) with the normal
-		const MODEL_UP: Vector3 = Vector3.UP
-		var rotation_axis = MODEL_UP.cross(normal)
-
-		if rotation_axis.length_squared() == 0:
-			# Vectors are parallel or opposite
-			if MODEL_UP.dot(normal) > 0:
-				# Same direction
-				return Basis.IDENTITY
-			else:
-				# Opposite direction; rotate 180 degrees around any perpendicular axis
-				rotation_axis = MODEL_UP.inverse().normalized()
-				return Basis(rotation_axis, PI)
-		else:
-			var angle = acos(clamp(MODEL_UP.dot(normal), -1.0, 1.0))
-			rotation_axis = rotation_axis.normalized()
-			return Basis(rotation_axis, angle)
 
 
 func _is_on_surface(pos: Vector3i) -> bool:
 	var max_index = size - 1
 	return pos.x == 0 or pos.y == 0 or pos.z == 0 \
 		or pos.x == max_index or pos.y == max_index or pos.z == max_index
+
+
+# TODO: there's probably a better way to do this
+func _get_face_value(normal: Vector3, pos: Vector3i) -> int:
+	var x_index: int
+	var y_index: int
+	
+	pos = pos - Vector3i.ONE
+	
+	if normal == Vector3.MODEL_REAR:
+		x_index = pos.x
+		y_index = pos.y
+	elif normal == Vector3.MODEL_FRONT:
+		x_index = size - 3 - pos.x
+		y_index = pos.y
+	elif normal == Vector3.MODEL_LEFT:
+		x_index = size - 3 - pos.z
+		y_index = pos.y
+	elif normal == Vector3.MODEL_RIGHT:
+		x_index = pos.z
+		y_index = pos.y
+	elif normal == Vector3.MODEL_TOP:
+		x_index = pos.x
+		y_index = pos.z
+	elif normal == Vector3.MODEL_BOTTOM:
+		x_index = pos.x
+		y_index = size - 3 - pos.z
+
+	return faces[normal][y_index][x_index]

@@ -1,14 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://cr8n2or72i0nb"]
+[gd_scene load_steps=15 format=3 uid="uid://cr8n2or72i0nb"]
 
 [ext_resource type="PackedScene" uid="uid://pl53ypflv87x" path="res://scenes/grid_world/grid_world.tscn" id="1_iamsh"]
 [ext_resource type="Script" path="res://scenes/camera/camera.gd" id="3_0po2q"]
 [ext_resource type="PackedScene" uid="uid://dohwqtpt8p74l" path="res://scenes/surface/surface_plane.tscn" id="3_nlf4r"]
 [ext_resource type="PackedScene" uid="uid://dikq2pbsjcls0" path="res://3D Assets/Stars/star.tscn" id="4_8x7ws"]
 [ext_resource type="PackedScene" uid="uid://bwyn4ofhcec2e" path="res://scenes/surface/surface_edge.tscn" id="4_b2u6c"]
+[ext_resource type="PackedScene" uid="uid://ipsciy1sfprl" path="res://scenes/surface/inner_space.tscn" id="5_e5i07"]
 [ext_resource type="PackedScene" uid="uid://dm63fbobyvthp" path="res://scenes/surface/surface_corner.tscn" id="5_ievaw"]
 [ext_resource type="PackedScene" uid="uid://basasfvhu00bj" path="res://3D Assets/Tessaract/tessaract.tscn" id="8_oxng8"]
 [ext_resource type="PackedScene" uid="uid://cpof3e35wsd5v" path="res://scenes/debug/debug_overlay.tscn" id="8_v4850"]
 [ext_resource type="PackedScene" uid="uid://cc7bulnyhpg7l" path="res://3D Assets/Redstone Tiles/Scenes/redstone straight.tscn" id="9_oolvl"]
+[ext_resource type="PackedScene" uid="uid://mcny8y118ao2" path="res://scenes/planet/planet.tscn" id="9_v1gr0"]
+[ext_resource type="PackedScene" uid="uid://cevo7ui06gxuc" path="res://scenes/obstacle/obstacle.tscn" id="10_8u3gk"]
 [ext_resource type="PackedScene" uid="uid://c171yd0lsbkwx" path="res://3D Assets/Redstone Tiles/Scenes/redstone edge.tscn" id="10_684wg"]
 [ext_resource type="PackedScene" uid="uid://qlvl8n67gi2f" path="res://UI/ui.tscn" id="11_qnq0n"]
 
@@ -128,10 +131,12 @@ script = ExtResource("3_0po2q")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
 [node name="GridWorld" parent="." instance=ExtResource("1_iamsh")]
-size = 7
+inner_scene = ExtResource("5_e5i07")
 edge_scene = ExtResource("4_b2u6c")
 corner_scene = ExtResource("5_ievaw")
 plane_scene = ExtResource("3_nlf4r")
+planet_scene = ExtResource("9_v1gr0")
+obstacle_scene = ExtResource("10_8u3gk")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)

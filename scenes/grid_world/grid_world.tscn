@@ -7,3 +7,4 @@
 script = ExtResource("1_sijbg")
 
 [node name="SurfaceLookup" parent="." instance=ExtResource("2_4pbcf")]
+visible = false

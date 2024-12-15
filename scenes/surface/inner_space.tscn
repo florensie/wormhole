@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ipsciy1sfprl"]
+
+[ext_resource type="Script" path="res://scenes/surface/inner_space.gd" id="1_ktbfm"]
+[ext_resource type="PackedScene" uid="uid://b4w5w1nncu4js" path="res://scenes/wormhole/wormhole_inside.tscn" id="2_6wtmg"]
+
+[node name="InnerSpace" type="Node3D"]
+script = ExtResource("1_ktbfm")
+wormhole_scene = ExtResource("2_6wtmg")

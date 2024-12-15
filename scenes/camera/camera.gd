@@ -7,7 +7,7 @@ const ZOOM_MIN: float = 7
 const ZOOM_MAX: float = 15
 
 ## The speed of dragging, higher is slower
-const DRAG_SPEED: float = 200
+const DRAG_SPEED: float = 700
 ## How much to speed up dragging at the max zoom level.
 ## The value in interpolated for anything in between min and max zoom
 const DRAG_ZOOM_FACTOR: float = 3

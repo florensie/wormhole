@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://cevo7ui06gxuc"]
+
+[ext_resource type="Script" path="res://scenes/obstacle/obstacle.gd" id="1_4ro47"]
+[ext_resource type="PackedScene" uid="uid://cft8byf14jwdc" path="res://scenes/scene_switcher/scene_switcher.tscn" id="2_rc2y6"]
+[ext_resource type="PackedScene" path="res://3D Assets/Astroids/astroid1.tscn" id="3_cxc5h"]
+[ext_resource type="PackedScene" path="res://3D Assets/Astroids/astroid2.tscn" id="4_432fj"]
+[ext_resource type="PackedScene" path="res://3D Assets/Astroids/astroid3.tscn" id="5_btfhw"]
+
+[node name="Obstacle" type="Node3D"]
+script = ExtResource("1_4ro47")
+
+[node name="SceneSwitcher" parent="." instance=ExtResource("2_rc2y6")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="Astroids" parent="SceneSwitcher" instance=ExtResource("3_cxc5h")]
+
+[node name="Astroids2" parent="SceneSwitcher" instance=ExtResource("4_432fj")]
+visible = false
+
+[node name="Astroids3" parent="SceneSwitcher" instance=ExtResource("5_btfhw")]
+visible = false
