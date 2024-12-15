@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c171yd0lsbkwx"]
+
+[ext_resource type="PackedScene" uid="uid://ba7yy77iuygtc" path="res://3D Assets/Redstone Tiles/FBX/Redstone Edge.fbx" id="1_ne6p2"]
+[ext_resource type="Shader" uid="uid://dfm1ek2bb81iv" path="res://3D Assets/Redstone Tiles/Redstone Shader instance.tres" id="2_2ynkg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_400qe"]
+render_priority = 0
+shader = ExtResource("2_2ynkg")
+
+[node name="Redstone Edge" instance=ExtResource("1_ne6p2")]
+
+[node name="Edge_001" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_400qe")

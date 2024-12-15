@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba5djppyk8mho"]
+
+[ext_resource type="PackedScene" uid="uid://dt7p7l3vxmw6u" path="res://3D Assets/Redstone Tiles/FBX/Redstone Corner.fbx" id="1_0voir"]
+[ext_resource type="Shader" uid="uid://dfm1ek2bb81iv" path="res://3D Assets/Redstone Tiles/Redstone Shader instance.tres" id="2_rqso0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d77px"]
+render_priority = 0
+shader = ExtResource("2_rqso0")
+
+[node name="Redstone Corner" instance=ExtResource("1_0voir")]
+
+[node name="Corner_001" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_d77px")

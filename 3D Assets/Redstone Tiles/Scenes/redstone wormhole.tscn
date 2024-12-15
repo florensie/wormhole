@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://2mrs45rdbt5k"]
+
+[ext_resource type="PackedScene" uid="uid://bh7pp7f8nfjro" path="res://3D Assets/Redstone Tiles/FBX/Redstone Wormhole.fbx" id="1_gcuvc"]
+[ext_resource type="Shader" uid="uid://dfm1ek2bb81iv" path="res://3D Assets/Redstone Tiles/Redstone Shader instance.tres" id="2_hk2e8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5w1j"]
+render_priority = 0
+shader = ExtResource("2_hk2e8")
+
+[node name="Redstone Wormhole" instance=ExtResource("1_gcuvc")]
+
+[node name="Wormhole_001" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_u5w1j")
