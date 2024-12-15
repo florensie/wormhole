@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://qlvl8n67gi2f"]
+
+[ext_resource type="Script" path="res://UI/UI.gd" id="1_t8baa"]
+[ext_resource type="Texture2D" uid="uid://csmh8oc3bf554" path="res://UI/UI Textures/Icon Draw.png" id="2_5rjlu"]
+[ext_resource type="Texture2D" uid="uid://dylyswudwb68k" path="res://UI/UI Textures/Icon Wormhole.png" id="3_bpn3k"]
+[ext_resource type="Texture2D" uid="uid://275obrm0k0hy" path="res://UI/UI Textures/Icon Inverted.png" id="4_rccoc"]
+[ext_resource type="Texture2D" uid="uid://cin1yurim58e3" path="res://UI/UI Textures/Icon Reset.png" id="5_n3xsw"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_t8baa")
+
+[node name="Button Draw" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 89.0
+offset_top = 52.0
+offset_right = 183.0
+offset_bottom = 132.0
+flat = true
+
+[node name="IconDraw" type="Sprite2D" parent="Button Draw"]
+position = Vector2(-5, -8)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_5rjlu")
+centered = false
+
+[node name="Button Wormhole" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 89.0
+offset_top = 164.0
+offset_right = 182.0
+offset_bottom = 247.0
+flat = true
+
+[node name="IconWormhole" type="Sprite2D" parent="Button Wormhole"]
+position = Vector2(-5, -8)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_bpn3k")
+centered = false
+
+[node name="Button Invert" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 89.0
+offset_top = 276.0
+offset_right = 181.0
+offset_bottom = 358.0
+flat = true
+
+[node name="IconInvert" type="Sprite2D" parent="Button Invert"]
+position = Vector2(-5, -8)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_rccoc")
+centered = false
+
+[node name="Button Reset" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 89.0
+offset_top = 388.0
+offset_right = 185.0
+offset_bottom = 473.0
+flat = true
+
+[node name="IconReset" type="Sprite2D" parent="Button Reset"]
+position = Vector2(-5, -8)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_n3xsw")
+centered = false
+
+[connection signal="pressed" from="Button Draw" to="." method="_on_button_draw_pressed"]
+[connection signal="pressed" from="Button Wormhole" to="." method="_on_button_wormhole_pressed"]
+[connection signal="pressed" from="Button Invert" to="." method="_on_button_invert_pressed"]
+[connection signal="pressed" from="Button Reset" to="." method="_on_button_reset_pressed"]

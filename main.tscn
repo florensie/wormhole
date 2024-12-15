@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cr8n2or72i0nb"]
+[gd_scene load_steps=12 format=3 uid="uid://cr8n2or72i0nb"]
 
 [ext_resource type="PackedScene" uid="uid://pl53ypflv87x" path="res://scenes/grid_world/grid_world.tscn" id="1_iamsh"]
 [ext_resource type="Script" path="res://scenes/camera/camera.gd" id="3_0po2q"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cpof3e35wsd5v" path="res://scenes/debug/debug_overlay.tscn" id="8_v4850"]
 [ext_resource type="PackedScene" uid="uid://cc7bulnyhpg7l" path="res://3D Assets/Redstone Tiles/Scenes/redstone straight.tscn" id="9_oolvl"]
 [ext_resource type="PackedScene" uid="uid://c171yd0lsbkwx" path="res://3D Assets/Redstone Tiles/Scenes/redstone edge.tscn" id="10_684wg"]
+[ext_resource type="PackedScene" uid="uid://qlvl8n67gi2f" path="res://UI/ui.tscn" id="11_qnq0n"]
 
 [node name="Main" type="Node3D"]
 
@@ -148,3 +149,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
 
 [node name="Redstone Edge" parent="." instance=ExtResource("10_684wg")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 3, 0, 3)
+
+[node name="UI" parent="." instance=ExtResource("11_qnq0n")]
+mouse_filter = 2

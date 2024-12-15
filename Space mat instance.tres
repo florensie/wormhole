@@ -8,6 +8,7 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_wxskv")
+shader_parameter/Invert = false
 shader_parameter/Texture2DParameter = ExtResource("2_yk2jo")
 shader_parameter/Texture2DParameter3 = ExtResource("2_fpfu1")
 shader_parameter/Texture2DParameter2 = ExtResource("3_6n5oh")
