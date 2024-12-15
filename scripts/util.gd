@@ -19,3 +19,9 @@ static func vector3i_range(vec: Vector3i) -> Array[Vector3i]:
 ## Should work with any vector type.
 static func is_cardinal_direction(vec) -> bool:
 	return vec.sign().abs().length() == 1
+
+
+## Returns the amount of non-zero components in the vector
+static func count_nonzero(vec) -> int:
+	vec = vec.sign().abs()
+	return vec.x + vec.y + vec.z

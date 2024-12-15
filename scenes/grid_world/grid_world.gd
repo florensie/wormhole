@@ -47,9 +47,10 @@ var item_name_format = RegEx.create_from_string("\\((-?\\d+),\\s*(-?\\d+),\\s*(-
 func _ready():
 	# Fill
 	for pos in Util.vector3i_range(Vector3i.ONE * size):
-		var boundaries: int = _count_position_boundaries(pos, Vector3i.ONE * size)
+		var world_pos = _to_local_position(pos)
+		var normal = _get_surface_normal(world_pos)
+		var boundaries = Util.count_nonzero(normal.abs())
 		var scene: PackedScene = box_scene
-		var rotation: Vector3 = Vector3.ZERO
 		
 		if boundaries == 2:
 			scene = edge_scene
@@ -57,6 +58,8 @@ func _ready():
 		elif boundaries == 3:
 			scene = corner_scene
 			#rotation = _get_corner_rotation(pos, Vector3i.ONE * size)
+			
+		var rotation: Basis = _compute_rotation(normal)
 		set_grid_item_at(pos, scene, rotation)
 
 
@@ -76,7 +79,7 @@ func get_neighbor_grid_item(item: GridItem, direction: Vector3i) -> GridItem:
 ## Sets a grid item to a given scene
 ## Returns the instantiated scene.
 ## If scene is null, the grid position is cleared, and no node is returned.
-func set_grid_item_at(pos: Vector3i, scene: PackedScene, rotation: Vector3 = Vector3.ZERO) -> GridItem:
+func set_grid_item_at(pos: Vector3i, scene: PackedScene, rotation: Basis = Basis.IDENTITY) -> GridItem:
 	var existing_item = get_grid_item(pos)
 	if existing_item:
 		remove_child(existing_item)
@@ -85,7 +88,7 @@ func set_grid_item_at(pos: Vector3i, scene: PackedScene, rotation: Vector3 = Vec
 	if scene:
 		item_instance = scene.instantiate()
 		item_instance.position = _to_local_position(pos)
-		item_instance.rotation = rotation
+		item_instance.transform.basis = rotation
 		item_instance.name = str(pos)
 		item_instance.grid_world = self
 		add_child(item_instance)
@@ -121,9 +124,51 @@ func _count_position_boundaries(pos: Vector3i, size: Vector3i) -> int:
 	return at_boundary.count(true)
 
 
-## Get a normal for a grid item that is on the surface
-func _get_surface_normal(pos: Vector3i, size: Vector3i) -> Vector3i:
-	assert(_count_position_boundaries(pos, size) > 0, "not on the surface")
-	
-	# TODO
-	return Vector3i.ZERO
+func _get_surface_normal(pos: Vector3) -> Vector3:
+	var center = Vector3.ZERO  # Center of the cube
+	var vec = pos - center
+	var abs_vec = Vector3(abs(vec.x), abs(vec.y), abs(vec.z))
+	var max_abs = max(abs_vec.x, abs_vec.y, abs_vec.z)
+	var epsilon = 0.001  # Small tolerance for floating point comparisons
+	var normal = Vector3()
+
+	# Retain components that are approximately equal to the maximum
+	if abs(abs_vec.x - max_abs) < epsilon:
+		normal.x = vec.x
+	else:
+		normal.x = 0.0
+	if abs(abs_vec.y - max_abs) < epsilon:
+		normal.y = vec.y
+	else:
+		normal.y = 0.0
+	if abs(abs_vec.z - max_abs) < epsilon:
+		normal.z = vec.z
+	else:
+		normal.z = 0.0
+
+	normal = normal.normalized()
+	return normal
+
+
+func _compute_rotation(normal: Vector3) -> Basis:
+	if normal == Vector3.ZERO:
+		# No rotation needed for inner blocks
+		return Basis.IDENTITY
+	else:
+		# Compute rotation that aligns the model's up vector (0, 1, 0) with the normal
+		var from_vector: Vector3 = Vector3.UP
+		var rotation_axis = from_vector.cross(normal)
+		var angle = acos(clamp(from_vector.dot(normal), -1.0, 1.0))
+
+		if rotation_axis.length_squared() == 0:
+			# Vectors are parallel or opposite
+			if from_vector.dot(normal) > 0:
+				# Same direction
+				return Basis.IDENTITY
+			else:
+				# Opposite direction; rotate 180 degrees around any perpendicular axis
+				rotation_axis = from_vector.inverse().normalized()
+				return Basis(rotation_axis, PI)
+		else:
+			rotation_axis = rotation_axis.normalized()
+			return Basis(rotation_axis, angle)
