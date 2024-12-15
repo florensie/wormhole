@@ -67,7 +67,7 @@ default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5
 op_type = 3
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_2ie0s"]
-default_input_values = [0, 0.0, 1, 0.655]
+default_input_values = [0, 0.0, 1, 1.0]
 operator = 5
 
 [sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_y1ebi"]
@@ -777,7 +777,7 @@ void fragment() {
 
 
 // FloatOp:119
-	float n_in119p1 = 0.65500;
+	float n_in119p1 = 1.00000;
 	float n_out119p0 = pow(n_out120p0.x, n_in119p1);
 
 
