@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dikq2pbsjcls0"]
+
+[ext_resource type="PackedScene" uid="uid://dlias5lnbbcvx" path="res://3D Assets/Stars/star.fbx" id="1_5no4q"]
+[ext_resource type="Shader" uid="uid://7bw1b0t0tfiy" path="res://3D Assets/Stars/stars.tres" id="2_o165o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_il1sk"]
+render_priority = 0
+shader = ExtResource("2_o165o")
+shader_parameter/ColorParameter = Color(0.98, 0.4704, 0.196, 1)
+shader_parameter/ColorParameter2 = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nnyu6"]
+render_priority = 0
+shader = ExtResource("2_o165o")
+shader_parameter/ColorParameter = Color(0, 0, 0, 1)
+shader_parameter/ColorParameter2 = Color(1, 0.416667, 0, 1)
+
+[node name="star" instance=ExtResource("1_5no4q")]
+
+[node name="Cube_003" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_il1sk")
+surface_material_override/1 = SubResource("ShaderMaterial_nnyu6")

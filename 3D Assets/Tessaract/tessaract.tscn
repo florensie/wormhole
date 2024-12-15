@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://basasfvhu00bj"]
+
+[ext_resource type="PackedScene" uid="uid://cj8rvv3ygnt1v" path="res://3D Assets/Tessaract/Tessaract.fbx" id="1_bp860"]
+[ext_resource type="Shader" uid="uid://cunwjmh5qyhyd" path="res://3D Assets/Tessaract/Tessaract Inner.tres" id="2_cd0g0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uglgn"]
+render_priority = -1
+shader = ExtResource("2_cd0g0")
+
+[node name="Tessaract" instance=ExtResource("1_bp860")]
+
+[node name="Tessaract inner" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_uglgn")
+
+[node name="Tessaract outer" parent="." index="1"]
+visible = false

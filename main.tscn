@@ -1,14 +1,117 @@
-[gd_scene load_steps=8 format=3 uid="uid://cr8n2or72i0nb"]
+[gd_scene load_steps=5 format=3 uid="uid://cr8n2or72i0nb"]
 
 [ext_resource type="PackedScene" uid="uid://pl53ypflv87x" path="res://scenes/grid_world/grid_world.tscn" id="1_iamsh"]
 [ext_resource type="Script" path="res://scenes/camera/camera.gd" id="3_0po2q"]
-[ext_resource type="PackedScene" uid="uid://ba5djppyk8mho" path="res://3D Assets/Redstone Tiles/Scenes/redstone Corner.tscn" id="3_p4lry"]
-[ext_resource type="PackedScene" uid="uid://c171yd0lsbkwx" path="res://3D Assets/Redstone Tiles/Scenes/redstone edge.tscn" id="4_0cwu3"]
-[ext_resource type="PackedScene" uid="uid://cd63fnmaw60qj" path="res://3D Assets/Redstone Tiles/Scenes/redstone end.tscn" id="5_pd85o"]
-[ext_resource type="PackedScene" uid="uid://cc7bulnyhpg7l" path="res://3D Assets/Redstone Tiles/Scenes/redstone straight.tscn" id="6_jwrbh"]
-[ext_resource type="PackedScene" uid="uid://2mrs45rdbt5k" path="res://3D Assets/Redstone Tiles/Scenes/redstone wormhole.tscn" id="7_rjibg"]
+[ext_resource type="PackedScene" uid="uid://dikq2pbsjcls0" path="res://3D Assets/Stars/star.tscn" id="4_8x7ws"]
+[ext_resource type="PackedScene" uid="uid://basasfvhu00bj" path="res://3D Assets/Tessaract/tessaract.tscn" id="8_oxng8"]
 
 [node name="Main" type="Node3D"]
+
+[node name="Decorational" type="Node" parent="."]
+
+[node name="Tessaract" parent="Decorational" instance=ExtResource("8_oxng8")]
+transform = Transform3D(0.71, 0, 0, 0, 0.71, 0, 0, 0, 0.71, 0, 0, 0)
+
+[node name="Tessaract2" parent="Decorational" instance=ExtResource("8_oxng8")]
+transform = Transform3D(0.606023, -0.103977, 0.355, 0.355, 0.355, -0.502046, -0.103977, 0.606023, 0.355, 0, 0, 0)
+
+[node name="Stars" type="Node" parent="Decorational"]
+
+[node name="star" parent="Decorational/Stars" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4, 1)
+
+[node name="star2" parent="Decorational/Stars" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 10, 1)
+
+[node name="star3" parent="Decorational/Stars" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -4, 6)
+
+[node name="star4" parent="Decorational/Stars" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 6, -6)
+
+[node name="star5" parent="Decorational/Stars" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -8, -13)
+
+[node name="star6" parent="Decorational/Stars" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -6, 10)
+
+[node name="star7" parent="Decorational/Stars" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -2, 4)
+
+[node name="star8" parent="Decorational/Stars" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 12, -16)
+
+[node name="star9" parent="Decorational/Stars" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 9, 12)
+
+[node name="star10" parent="Decorational/Stars" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -12, 0)
+
+[node name="Stars2" type="Node3D" parent="Decorational"]
+transform = Transform3D(0.392134, -0.90986, 0.135594, -0.416474, -0.307021, -0.855738, 0.820232, 0.279093, -0.499326, 0, 0, 0)
+
+[node name="star" parent="Decorational/Stars2" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4, 1)
+
+[node name="star2" parent="Decorational/Stars2" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 10, 1)
+
+[node name="star3" parent="Decorational/Stars2" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -4, 6)
+
+[node name="star4" parent="Decorational/Stars2" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 6, -6)
+
+[node name="star5" parent="Decorational/Stars2" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -8, -13)
+
+[node name="star6" parent="Decorational/Stars2" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -6, 10)
+
+[node name="star7" parent="Decorational/Stars2" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -2, 4)
+
+[node name="star8" parent="Decorational/Stars2" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 12, -16)
+
+[node name="star9" parent="Decorational/Stars2" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 9, 12)
+
+[node name="star10" parent="Decorational/Stars2" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -12, 0)
+
+[node name="Stars3" type="Node3D" parent="Decorational"]
+transform = Transform3D(-0.8511, -0.523402, 0.0409669, -0.44165, 0.75598, 0.483156, -0.283855, 0.393121, -0.874575, 0, 0, 0)
+
+[node name="star" parent="Decorational/Stars3" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4, 1)
+
+[node name="star2" parent="Decorational/Stars3" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 10, 1)
+
+[node name="star3" parent="Decorational/Stars3" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -4, 6)
+
+[node name="star4" parent="Decorational/Stars3" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 6, -6)
+
+[node name="star5" parent="Decorational/Stars3" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -8, -13)
+
+[node name="star6" parent="Decorational/Stars3" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -6, 10)
+
+[node name="star7" parent="Decorational/Stars3" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -2, 4)
+
+[node name="star8" parent="Decorational/Stars3" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 12, -16)
+
+[node name="star9" parent="Decorational/Stars3" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 9, 12)
+
+[node name="star10" parent="Decorational/Stars3" instance=ExtResource("4_8x7ws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -12, 0)
 
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99962, -0.0275727, 0, 0.0275727, 0.99962, 0, 0, 0)
@@ -22,30 +125,3 @@ size = 7
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
-
-[node name="Redstone Corner" parent="." instance=ExtResource("3_p4lry")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
-
-[node name="Redstone Edge" parent="." instance=ExtResource("4_0cwu3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
-
-[node name="Redstone End" parent="." instance=ExtResource("5_pd85o")]
-transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, 0, 1, -1)
-
-[node name="Redstone Straight" parent="." instance=ExtResource("6_jwrbh")]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 1, 0)
-
-[node name="Redstone Straight2" parent="." instance=ExtResource("6_jwrbh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
-
-[node name="Redstone Wormhole" parent="." instance=ExtResource("7_rjibg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)
-
-[node name="Redstone Wormhole2" parent="." instance=ExtResource("7_rjibg")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, -2)
-
-[node name="Redstone Corner2" parent="." instance=ExtResource("3_p4lry")]
-transform = Transform3D(4.37114e-08, 1, -3.82137e-15, 1, -4.37114e-08, -8.74228e-08, -8.74228e-08, 0, -1, -3, 0, -2)
-
-[node name="Redstone End2" parent="." instance=ExtResource("5_pd85o")]
-transform = Transform3D(4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, -3, -1, -2)
