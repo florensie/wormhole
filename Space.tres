@@ -10,7 +10,7 @@ texture = ExtResource("1_u3ihr")
 operator = 2
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_n2o65"]
-constant = 0.262
+constant = 0.466
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_myffa"]
 parameter_name = "Texture2DParameter3"
@@ -21,7 +21,7 @@ parameter_name = "Texture2DParameter3"
 operator = 2
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_1ld07"]
-constant = -0.488
+constant = -0.345
 
 [sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_p3ys5"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(1, 1, 1, 1), 2, Quaternion(0.5, 0.5, 0.5, 0.5)]
@@ -46,8 +46,8 @@ input_name = "front_facing"
 function = 31
 
 [sub_resource type="VisualShaderNodeSwitch" id="VisualShaderNodeSwitch_82um2"]
-default_input_values = [0, false, 1, true, 2, false]
-op_type = 6
+default_input_values = [0, false, 1, 1, 2, 0]
+op_type = 1
 
 [sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_k7owo"]
 parameter_name = "Invert"
@@ -57,7 +57,7 @@ default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5
 op_type = 3
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_xyfpr"]
-constant = Color(1, 0.816667, 0, 1)
+constant = Color(1, 0.516667, 0, 1)
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_dgumv"]
 default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.215, 0.375, 0.385)]
@@ -67,7 +67,7 @@ default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5
 op_type = 3
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_2ie0s"]
-default_input_values = [0, 0.0, 1, 0.27]
+default_input_values = [0, 0.0, 1, 0.655]
 operator = 5
 
 [sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_y1ebi"]
@@ -75,10 +75,10 @@ default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0, 
 op_type = 2
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_5x5k4"]
-constant = -0.535
+constant = -0.919
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_sbfiv"]
-constant = 0.301
+constant = 0.542
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_qgc2c"]
 constant = 0.5
@@ -301,7 +301,7 @@ operator = 5
 [sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_rfp2t"]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_32rlr"]
-default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.215, 0.375, 0.385)]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1.595, 1.305, 0.385)]
 operator = 2
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_jqncw"]
@@ -642,7 +642,7 @@ void fragment() {
 
 
 // FloatConstant:106
-	float n_out106p0 = -0.488000;
+	float n_out106p0 = -0.345000;
 
 
 // VectorOp:105
@@ -654,7 +654,7 @@ void fragment() {
 
 
 // FloatConstant:102
-	float n_out102p0 = 0.262000;
+	float n_out102p0 = 0.466000;
 
 
 // VectorOp:101
@@ -714,12 +714,12 @@ void fragment() {
 
 
 // VectorOp:93
-	vec3 n_in93p1 = vec3(0.21500, 0.37500, 0.38500);
+	vec3 n_in93p1 = vec3(1.59500, 1.30500, 0.38500);
 	vec3 n_out93p0 = n_out109p0 * n_in93p1;
 
 
 // ColorConstant:116
-	vec4 n_out116p0 = vec4(1.000000, 0.816667, 0.000000, 1.000000);
+	vec4 n_out116p0 = vec4(1.000000, 0.516667, 0.000000, 1.000000);
 
 
 // VectorOp:117
@@ -765,11 +765,11 @@ void fragment() {
 
 
 // FloatConstant:122
-	float n_out122p0 = 0.301000;
+	float n_out122p0 = 0.542000;
 
 
 // FloatConstant:121
-	float n_out121p0 = -0.535000;
+	float n_out121p0 = -0.919000;
 
 
 // MultiplyAdd:120
@@ -777,7 +777,7 @@ void fragment() {
 
 
 // FloatOp:119
-	float n_in119p1 = 0.27000;
+	float n_in119p1 = 0.65500;
 	float n_out119p0 = pow(n_out120p0.x, n_in119p1);
 
 
@@ -874,12 +874,12 @@ void fragment() {
 	float n_out124p0 = 1.000000;
 
 
-	bool n_out113p0;
+	int n_out113p0;
 // Switch:113
 	if (n_out114p0) {
-		n_out113p0 = n_out112p0 > 0.0 ? true : false;
+		n_out113p0 = int(n_out112p0);
 	} else {
-		n_out113p0 = n_out124p0 > 0.0 ? true : false;
+		n_out113p0 = int(n_out124p0);
 	}
 
 
@@ -889,13 +889,12 @@ void fragment() {
 
 // Output:0
 	ALBEDO = n_out137p0;
-	ALPHA = (n_out113p0 ? 1.0 : 0.0);
+	ALPHA = float(n_out113p0);
 	ALPHA_SCISSOR_THRESHOLD = n_out123p0;
 
 
 }
 "
-graph_offset = Vector2(-3085.84, -2032.51)
 modes/cull = 2
 modes/diffuse = 3
 flags/unshaded = true
@@ -1126,4 +1125,4 @@ nodes/fragment/139/node = SubResource("VisualShaderNodeVectorOp_uoj1a")
 nodes/fragment/139/position = Vector2(2960, -940)
 nodes/fragment/140/node = SubResource("VisualShaderNodeFresnel_1rdor")
 nodes/fragment/140/position = Vector2(2520, -1480)
-nodes/fragment/connections = PackedInt32Array(16, 0, 17, 0, 16, 1, 17, 1, 17, 0, 14, 0, 16, 1, 18, 0, 16, 2, 18, 1, 16, 0, 19, 0, 16, 2, 19, 1, 14, 0, 20, 0, 18, 0, 21, 0, 19, 0, 22, 0, 21, 0, 20, 1, 43, 0, 39, 0, 44, 0, 43, 3, 45, 0, 43, 4, 47, 0, 20, 2, 48, 0, 41, 0, 44, 0, 48, 3, 45, 0, 48, 4, 39, 0, 46, 0, 41, 0, 47, 0, 50, 0, 51, 0, 51, 0, 48, 0, 51, 1, 43, 0, 52, 0, 16, 0, 53, 0, 52, 1, 22, 0, 23, 0, 20, 0, 23, 1, 46, 0, 23, 2, 54, 0, 22, 2, 54, 0, 14, 2, 54, 0, 21, 2, 56, 0, 58, 1, 62, 0, 33, 2, 55, 0, 52, 0, 58, 0, 55, 0, 2, 0, 4, 1, 3, 0, 4, 0, 33, 0, 64, 0, 67, 0, 63, 2, 35, 0, 68, 0, 68, 0, 33, 0, 76, 0, 63, 0, 77, 0, 63, 1, 78, 0, 77, 0, 79, 0, 77, 1, 4, 0, 80, 0, 80, 0, 58, 0, 81, 0, 80, 1, 69, 0, 82, 0, 82, 0, 77, 2, 82, 0, 75, 0, 75, 0, 67, 0, 64, 3, 67, 1, 83, 0, 76, 0, 85, 0, 84, 0, 4, 0, 86, 0, 86, 0, 85, 0, 87, 0, 83, 0, 84, 0, 88, 0, 89, 0, 88, 1, 90, 0, 88, 2, 88, 0, 91, 0, 92, 0, 87, 2, 95, 0, 96, 0, 95, 1, 96, 1, 96, 0, 94, 0, 95, 1, 97, 0, 95, 2, 97, 1, 95, 0, 98, 0, 95, 2, 98, 1, 97, 0, 99, 0, 98, 0, 100, 0, 102, 0, 101, 1, 103, 0, 100, 2, 103, 0, 94, 2, 103, 0, 99, 2, 105, 0, 104, 0, 106, 0, 105, 1, 4, 0, 105, 0, 56, 0, 104, 1, 104, 0, 101, 0, 94, 0, 107, 0, 99, 0, 107, 1, 47, 0, 107, 2, 100, 0, 108, 0, 107, 0, 108, 1, 46, 0, 108, 2, 109, 0, 87, 1, 109, 0, 93, 0, 108, 0, 110, 0, 63, 0, 0, 0, 108, 0, 109, 1, 23, 0, 109, 0, 101, 0, 95, 0, 110, 3, 109, 2, 114, 0, 113, 0, 111, 0, 113, 2, 111, 0, 112, 0, 112, 0, 113, 1, 113, 0, 0, 1, 115, 0, 87, 0, 114, 0, 115, 2, 93, 0, 115, 0, 109, 0, 117, 1, 116, 0, 117, 0, 117, 0, 115, 1, 91, 0, 118, 0, 118, 0, 92, 0, 114, 0, 118, 2, 119, 0, 118, 1, 120, 0, 119, 0, 121, 0, 120, 2, 122, 0, 120, 1, 84, 0, 120, 0, 123, 0, 0, 19, 124, 0, 113, 2, 127, 0, 125, 2, 128, 0, 125, 0, 130, 0, 129, 0, 131, 0, 129, 1, 132, 0, 129, 2, 133, 0, 132, 1, 125, 0, 132, 0, 63, 0, 137, 1, 137, 0, 0, 0, 129, 0, 138, 0, 125, 0, 138, 1, 138, 0, 139, 0, 139, 0, 137, 0, 140, 0, 139, 1)
+nodes/fragment/connections = PackedInt32Array(16, 0, 17, 0, 16, 1, 17, 1, 17, 0, 14, 0, 16, 1, 18, 0, 16, 2, 18, 1, 16, 0, 19, 0, 16, 2, 19, 1, 14, 0, 20, 0, 18, 0, 21, 0, 19, 0, 22, 0, 21, 0, 20, 1, 43, 0, 39, 0, 44, 0, 43, 3, 45, 0, 43, 4, 47, 0, 20, 2, 48, 0, 41, 0, 44, 0, 48, 3, 45, 0, 48, 4, 39, 0, 46, 0, 41, 0, 47, 0, 50, 0, 51, 0, 51, 0, 48, 0, 51, 1, 43, 0, 52, 0, 16, 0, 53, 0, 52, 1, 22, 0, 23, 0, 20, 0, 23, 1, 46, 0, 23, 2, 54, 0, 22, 2, 54, 0, 14, 2, 54, 0, 21, 2, 56, 0, 58, 1, 62, 0, 33, 2, 55, 0, 52, 0, 58, 0, 55, 0, 2, 0, 4, 1, 3, 0, 4, 0, 33, 0, 64, 0, 67, 0, 63, 2, 35, 0, 68, 0, 68, 0, 33, 0, 76, 0, 63, 0, 77, 0, 63, 1, 78, 0, 77, 0, 79, 0, 77, 1, 4, 0, 80, 0, 80, 0, 58, 0, 81, 0, 80, 1, 69, 0, 82, 0, 82, 0, 77, 2, 82, 0, 75, 0, 75, 0, 67, 0, 64, 3, 67, 1, 83, 0, 76, 0, 85, 0, 84, 0, 4, 0, 86, 0, 86, 0, 85, 0, 87, 0, 83, 0, 84, 0, 88, 0, 89, 0, 88, 1, 90, 0, 88, 2, 88, 0, 91, 0, 92, 0, 87, 2, 95, 0, 96, 0, 95, 1, 96, 1, 96, 0, 94, 0, 95, 1, 97, 0, 95, 2, 97, 1, 95, 0, 98, 0, 95, 2, 98, 1, 97, 0, 99, 0, 98, 0, 100, 0, 102, 0, 101, 1, 103, 0, 100, 2, 103, 0, 94, 2, 103, 0, 99, 2, 105, 0, 104, 0, 106, 0, 105, 1, 4, 0, 105, 0, 56, 0, 104, 1, 104, 0, 101, 0, 94, 0, 107, 0, 99, 0, 107, 1, 47, 0, 107, 2, 100, 0, 108, 0, 107, 0, 108, 1, 46, 0, 108, 2, 109, 0, 87, 1, 109, 0, 93, 0, 108, 0, 110, 0, 108, 0, 109, 1, 23, 0, 109, 0, 101, 0, 95, 0, 110, 3, 109, 2, 114, 0, 113, 0, 111, 0, 112, 0, 112, 0, 113, 1, 115, 0, 87, 0, 114, 0, 115, 2, 93, 0, 115, 0, 109, 0, 117, 1, 116, 0, 117, 0, 117, 0, 115, 1, 91, 0, 118, 0, 118, 0, 92, 0, 114, 0, 118, 2, 119, 0, 118, 1, 120, 0, 119, 0, 121, 0, 120, 2, 122, 0, 120, 1, 84, 0, 120, 0, 113, 0, 0, 1, 123, 0, 0, 19, 124, 0, 113, 2, 127, 0, 125, 2, 128, 0, 125, 0, 130, 0, 129, 0, 131, 0, 129, 1, 132, 0, 129, 2, 133, 0, 132, 1, 125, 0, 132, 0, 63, 0, 137, 1, 137, 0, 0, 0, 129, 0, 138, 0, 125, 0, 138, 1, 138, 0, 139, 0, 139, 0, 137, 0, 140, 0, 139, 1)
