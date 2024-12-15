@@ -2,10 +2,12 @@ extends Node
 class_name GridWorld
 
 @export var size: int = 5
-@export var box_scene: PackedScene
 @export var edge_scene: PackedScene
 @export var corner_scene: PackedScene
+@export var plane_scene: PackedScene
 @export var box_size: int = 1
+
+@onready var surface_lookup: SurfaceLookup = $SurfaceLookup
 
 # 0 = nothing
 # 1 = obstacle
@@ -47,20 +49,22 @@ var item_name_format = RegEx.create_from_string("\\((-?\\d+),\\s*(-?\\d+),\\s*(-
 func _ready():
 	# Fill
 	for pos in Util.vector3i_range(Vector3i.ONE * size):
-		var world_pos = _to_local_position(pos)
-		var normal = _get_surface_normal(world_pos)
-		var boundaries = Util.count_nonzero(normal.abs())
-		var scene: PackedScene = box_scene
+		var world_pos: Vector3 = _to_local_position(pos)
+		var normal: Vector3 = _get_surface_normal(world_pos)
+		var boundaries: int = Util.count_nonzero(normal.abs())
+		var scene: PackedScene = plane_scene
 		
 		if boundaries == 2:
 			scene = edge_scene
-			#rotation = _get_edge_rotation(pos, Vector3i.ONE * size)
 		elif boundaries == 3:
 			scene = corner_scene
-			#rotation = _get_corner_rotation(pos, Vector3i.ONE * size)
-			
-		var rotation: Basis = _compute_rotation(normal)
-		set_grid_item_at(pos, scene, rotation)
+		
+		var rotation: Basis = surface_lookup.rotation_for_normal(normal)
+		var grid_item = set_grid_item_at(pos, scene, rotation)
+		#if grid_item:
+			#grid_item.normal = normal
+			#if _is_on_surface(pos):
+				#DebugOverlay.draw_3d.add_vector(grid_item, "normal", 1, 2)
 
 
 ## Get the node in a grid position, null if none
@@ -152,23 +156,28 @@ func _get_surface_normal(pos: Vector3) -> Vector3:
 
 func _compute_rotation(normal: Vector3) -> Basis:
 	if normal == Vector3.ZERO:
-		# No rotation needed for inner blocks
 		return Basis.IDENTITY
 	else:
 		# Compute rotation that aligns the model's up vector (0, 1, 0) with the normal
-		var from_vector: Vector3 = Vector3.UP
-		var rotation_axis = from_vector.cross(normal)
-		var angle = acos(clamp(from_vector.dot(normal), -1.0, 1.0))
+		const MODEL_UP: Vector3 = Vector3.UP
+		var rotation_axis = MODEL_UP.cross(normal)
 
 		if rotation_axis.length_squared() == 0:
 			# Vectors are parallel or opposite
-			if from_vector.dot(normal) > 0:
+			if MODEL_UP.dot(normal) > 0:
 				# Same direction
 				return Basis.IDENTITY
 			else:
 				# Opposite direction; rotate 180 degrees around any perpendicular axis
-				rotation_axis = from_vector.inverse().normalized()
+				rotation_axis = MODEL_UP.inverse().normalized()
 				return Basis(rotation_axis, PI)
 		else:
+			var angle = acos(clamp(MODEL_UP.dot(normal), -1.0, 1.0))
 			rotation_axis = rotation_axis.normalized()
 			return Basis(rotation_axis, angle)
+
+
+func _is_on_surface(pos: Vector3i) -> bool:
+	var max_index = size - 1
+	return pos.x == 0 or pos.y == 0 or pos.z == 0 \
+		or pos.x == max_index or pos.y == max_index or pos.z == max_index

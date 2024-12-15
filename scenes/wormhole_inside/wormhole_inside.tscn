@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b4w5w1nncu4js"]
 
-[ext_resource type="Script" path="res://scripts/grid_item.gd" id="1_1ts6t"]
+[ext_resource type="Script" path="res://scenes/grid_world/grid_item.gd" id="1_1ts6t"]
 
 [node name="WormholeInside" type="Node3D"]
 script = ExtResource("1_1ts6t")

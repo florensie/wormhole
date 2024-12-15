@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://dohwqtpt8p74l"]
+
+[ext_resource type="Script" path="res://scenes/surface/surface_plane.gd" id="1_keyrq"]
+[ext_resource type="Material" uid="uid://46k61o417j3r" path="res://Space mat instance.tres" id="1_kxumg"]
+[ext_resource type="PackedScene" uid="uid://b4w5w1nncu4js" path="res://scenes/wormhole_inside/wormhole_inside.tscn" id="2_0ahy0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qdyd"]
+resource_name = "Material.005"
+cull_mode = 2
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_kiik3"]
+_surfaces = [{
+"aabb": AABB(-0.5, -0.5, 0.5, 1.00004, 0.999965, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0),
+"name": "Material.005",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(252, 255, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 255, 255, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3kdir"]
+resource_name = "Tiles_Cube_006"
+_surfaces = [{
+"aabb": AABB(-0.5, -0.5, 0.5, 1.00004, 0.999965, 1e-05),
+"attribute_data": PackedByteArray(252, 255, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 2, 0, 0, 0),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0),
+"material": SubResource("StandardMaterial3D_4qdyd"),
+"name": "Material.005",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(252, 255, 0, 0, 0, 0, 0, 128, 255, 255, 255, 255, 0, 0, 0, 128, 0, 0, 0, 0, 0, 0, 0, 128, 2, 0, 255, 255, 0, 0, 0, 128, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_kiik3")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kpurm"]
+
+[node name="SurfacePlane" type="Node3D"]
+script = ExtResource("1_keyrq")
+wormhole_inside_scene = ExtResource("2_0ahy0")
+
+[node name="Surface Flat" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_3kdir")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("1_kxumg")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_kpurm")
+
+[connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]

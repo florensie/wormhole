@@ -25,3 +25,13 @@ static func is_cardinal_direction(vec) -> bool:
 static func count_nonzero(vec) -> int:
 	vec = vec.sign().abs()
 	return vec.x + vec.y + vec.z
+
+
+static func vector3_to_color(vector: Vector3) -> Color:
+	var normalized_vector = vector.normalized()
+	
+	var r = (normalized_vector.x + 1.0) * 0.5
+	var g = (normalized_vector.y + 1.0) * 0.5
+	var b = (normalized_vector.z + 1.0) * 0.5
+	
+	return Color(r, g, b)

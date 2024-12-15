@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=4 uid="uid://bwyn4ofhcec2e"]
 
-[ext_resource type="Script" path="res://scripts/grid_item.gd" id="1_3xurx"]
+[ext_resource type="Script" path="res://scenes/grid_world/grid_item.gd" id="1_3xurx"]
 [ext_resource type="Material" uid="uid://46k61o417j3r" path="res://Space mat instance.tres" id="2_xhah5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u56ut"]
@@ -45,6 +45,7 @@ shadow_mesh = SubResource("ArrayMesh_juxrf")
 script = ExtResource("1_3xurx")
 
 [node name="Surface Edge" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_fceag")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_xhah5")

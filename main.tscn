@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr8n2or72i0nb"]
+[gd_scene load_steps=9 format=3 uid="uid://cr8n2or72i0nb"]
 
 [ext_resource type="PackedScene" uid="uid://pl53ypflv87x" path="res://scenes/grid_world/grid_world.tscn" id="1_iamsh"]
 [ext_resource type="Script" path="res://scenes/camera/camera.gd" id="3_0po2q"]
+[ext_resource type="PackedScene" uid="uid://dohwqtpt8p74l" path="res://scenes/surface/surface_plane.tscn" id="3_nlf4r"]
 [ext_resource type="PackedScene" uid="uid://dikq2pbsjcls0" path="res://3D Assets/Stars/star.tscn" id="4_8x7ws"]
+[ext_resource type="PackedScene" uid="uid://bwyn4ofhcec2e" path="res://scenes/surface/surface_edge.tscn" id="4_b2u6c"]
+[ext_resource type="PackedScene" uid="uid://dm63fbobyvthp" path="res://scenes/surface/surface_corner.tscn" id="5_ievaw"]
 [ext_resource type="PackedScene" uid="uid://basasfvhu00bj" path="res://3D Assets/Tessaract/tessaract.tscn" id="8_oxng8"]
+[ext_resource type="PackedScene" uid="uid://cpof3e35wsd5v" path="res://scenes/debug/debug_overlay.tscn" id="8_v4850"]
 
 [node name="Main" type="Node3D"]
 
@@ -122,6 +126,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
 [node name="GridWorld" parent="." instance=ExtResource("1_iamsh")]
 size = 7
+edge_scene = ExtResource("4_b2u6c")
+corner_scene = ExtResource("5_ievaw")
+plane_scene = ExtResource("3_nlf4r")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
+
+[node name="DebugOverlay" parent="." instance=ExtResource("8_v4850")]

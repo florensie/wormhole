@@ -1,5 +1,5 @@
 extends GridItem
-class_name Box
+class_name SurfacePlane
 ## Blocks that build up the inside of the level.
 
 @export var wormhole_inside_scene: PackedScene
@@ -19,7 +19,6 @@ func _input(event):
 
 func _can_create_worm_hole() -> bool:
 	# TODO: 1. this box MUST be in the surface
-	#       2. this box CANNOT be on an edge
 	return true
 
 
@@ -30,7 +29,7 @@ func _create_worm_hole(item: Node3D, direction: Vector3i) -> bool:
 	
 	# Recurse until no more neighbors are found
 	if neighbor:
-		is_valid = _create_worm_hole(neighbor, direction) if neighbor is Box else false
+		is_valid = _create_worm_hole(neighbor, direction) if neighbor is SurfacePlane else false
 	
 	if is_valid:
 		grid_world.replace_grid_item(item, wormhole_inside_scene)
@@ -46,6 +45,6 @@ func _on_area_3d_mouse_exited():
 	is_moused_over = false
 
 
-func _on_area_3d_input_event(camera, event, event_position, normal, shape_idx):
+func _on_area_3d_input_event(_camera, _event, _event_position, normal, _shape_idx):
 	if normal:
 		last_mouse_normal = normal
