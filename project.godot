@@ -21,6 +21,11 @@ Autoload="*res://scripts/autoload.gd"
 DebugOverlay="*res://scenes/debug/debug_overlay.tscn"
 SignalBus="*res://scripts/signal_bus.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
